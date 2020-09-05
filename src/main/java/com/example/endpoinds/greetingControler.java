@@ -15,7 +15,7 @@ public class greetingControler {
 
     public static String scan(String input){
         String result = null;
-        String cleanInput = input.replaceAll("[^-0-9]", "");
+        String cleanInput = input.replaceAll("[^-0-9.]", "");
         if(!cleanInput.isEmpty()){
             result  = cleanInput;
         }
@@ -27,8 +27,10 @@ public class greetingControler {
     public String celsius(
             @PathVariable("id") String id){
 
+        logger.info("Getting input ---->>><<<----\n");
         String cleanInput = scan(id);
 
+        logger.info("Sanitizing data ---->>><<<----\n");
         if(cleanInput == null){
             String errorMsg =  "{\n" +
                     "   \"status\":400,\n" +
@@ -38,7 +40,7 @@ public class greetingControler {
             return errorMsg;
         }
 
-        double convert = Integer.parseInt(cleanInput) - 273.15;
+        double convert = Double.parseDouble(cleanInput) - 273.15;
         DecimalFormat df = new DecimalFormat("####0.00");
 
         String result = "{\n";
@@ -56,8 +58,10 @@ public class greetingControler {
     public String kelvin(
             @PathVariable("id") String id){
 
+        logger.info("Getting input ---->>><<<----\n");
         String cleanInput = scan(id);
 
+        logger.info("Sanitizing data ---->>><<<----\n");
         if(cleanInput == null){
             String errorMsg =  "{\n" +
                     "   \"status\":400,\n" +
@@ -67,7 +71,7 @@ public class greetingControler {
             return errorMsg;
         }
 
-        double convert = Integer.parseInt(cleanInput) + 273.15;
+        double convert = Double.parseDouble(cleanInput) + 273.15;
         DecimalFormat df = new DecimalFormat("####0.00");
 
         String result = "{\n";
@@ -86,8 +90,10 @@ public class greetingControler {
     public String kilometers(
             @PathVariable("id") String id){
 
+        logger.info("Getting input ---->>><<<----\n");
         String cleanInput = scan(id);
 
+        logger.info("Sanitizing data ---->>><<<----\n");
         if(cleanInput == null){
             String errorMsg =  "{\n" +
                     "   \"status\":400,\n" +
@@ -97,7 +103,7 @@ public class greetingControler {
             return errorMsg;
         }
 
-        double convert = Integer.parseInt(cleanInput) * 1.60934;
+        double convert = Double.parseDouble(cleanInput) * 1.60934;
         DecimalFormat df = new DecimalFormat("####0.00");
 
         String result = "{\n";
@@ -115,8 +121,10 @@ public class greetingControler {
     public String miles(
             @PathVariable("id") String id){
 
+        logger.info("Getting input ---->>><<<----\n");
         String cleanInput = scan(id);
 
+        logger.info("Sanitizing data ---->>><<<----\n");
         if(cleanInput == null){
             String errorMsg =  "{\n" +
                     "   \"status\":400,\n" +
@@ -126,7 +134,7 @@ public class greetingControler {
             return errorMsg;
         }
 
-        double convert = Integer.parseInt(cleanInput) / 1.60934;
+        double convert = Double.parseDouble(cleanInput) / 1.60934;
         DecimalFormat df = new DecimalFormat("####0.00");
 
         String result = "{\n";
